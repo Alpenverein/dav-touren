@@ -407,6 +407,7 @@ array(
 ),
 'taxonomy' => array(
 0 => 'personarole:tourenleiter',
+    1 => 'personarole:tourenleiterin',
 ),
 'allow_null' => 1,
 'allow_archives' => 0,
