@@ -1,5 +1,13 @@
 <?php
 
+
+// Kein direkten Zugriff erlauben
+if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)))
+{
+    die('No direct calls allowed!');
+}
+
+
 // Register Custom Post Type
 function cpt_tours() {
 

@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f55ca76-d26c-4f1d-a9c5-63b84e6be173" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/includes/querybuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_acf-fields.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/add_acf-fields.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_posttype.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/add_posttype.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_shortcodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/add_shortcodes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_taxonomy.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/add_taxonomy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customizer.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/customizer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dav-touren.php" beforeDir="false" afterPath="$PROJECT_DIR$/dav-touren.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/add_acf-fields.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/add_acf-fields.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/add_posttype.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/add_posttype.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/add_shortcodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/add_shortcodes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/add_taxonomy.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/add_taxonomy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/customizer.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/customizer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/querybuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/querybuilder.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,26 +25,11 @@
       <file leaf-file-name="dav-touren.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dav-touren.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="querybuilder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/querybuilder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3160">
-              <caret line="156" column="2" selection-start-line="156" selection-start-column="2" selection-end-line="156" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add_acf-fields.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/add_acf-fields.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+            <state relative-caret-position="201">
+              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+              <folding>
+                <element signature="e#6#442#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,6 +49,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/add_acf-fields.php" />
+        <option value="$PROJECT_DIR$/includes/add_acf-fields.php" />
+        <option value="$PROJECT_DIR$/includes/add_posttype.php" />
+        <option value="$PROJECT_DIR$/includes/add_shortcodes.php" />
+        <option value="$PROJECT_DIR$/includes/add_taxonomy.php" />
+        <option value="$PROJECT_DIR$/includes/customizer.php" />
         <option value="$PROJECT_DIR$/includes/querybuilder.php" />
         <option value="$PROJECT_DIR$/dav-touren.php" />
       </list>
@@ -79,7 +66,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="1644" />
+    <option name="y" value="65" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
@@ -155,10 +143,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9795000" />
+    <option name="totallyTimeSpent" value="16196000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1799" y="144" width="1440" height="877" extended-state="0" />
+    <frame x="1644" y="65" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -203,13 +191,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dav-touren.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/add_acf-fields.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7362">
@@ -364,15 +345,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/add_shortcodes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-519" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dav-touren.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding>
+            <element signature="e#6#442#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -498,13 +477,6 @@
     <entry file="file://$PROJECT_DIR$/includes/add_taxonomy.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
-          <caret line="36" column="44" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/add_taxonomy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
           <caret line="36" column="44" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="44" />
         </state>
       </provider>
@@ -515,9 +487,6 @@
     <entry file="file://$PROJECT_DIR$/activation.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/customizer.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/page_test.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -525,24 +494,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/includes/customizer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/add_taxonomy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/add_shortcodes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/add_posttype.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/includes/add_acf-fields.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+        <state relative-caret-position="60">
+          <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/querybuilder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3160">
-          <caret line="156" column="2" selection-start-line="156" selection-start-column="2" selection-end-line="156" selection-end-column="2" />
+        <state relative-caret-position="416">
+          <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dav-touren.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+        <state relative-caret-position="201">
+          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+          <folding>
+            <element signature="e#6#442#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

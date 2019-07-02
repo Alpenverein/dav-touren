@@ -1,14 +1,17 @@
 <?php
 
 
-function tourQuery() {
+// Kein direkten Zugriff erlauben
+if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)))
+{
+    die('No direct calls allowed!');
+}
+
+function tourQuery($parameter = '') {
 
     global $wp;
     if(get_theme_mod('dav_touren_counter') != false) {$pagecount = get_theme_mod('dav_touren_counter');}
     else {$pagecount = 10;};
-
-//$current_url = home_url( add_query_arg( array(), $wp->request) );
-    $current_url = home_url($wp->request);
 
     $paged = get_query_var('paged') ? get_query_var('paged') : 1;
     $offset = ($paged - 1) * $pagecount;
@@ -17,7 +20,7 @@ function tourQuery() {
     if($paged > 1) {
 
         $pattern = '/page\/\d/';
-        $current_url = preg_replace($pattern,'',$current_url);
+        //$current_url = preg_replace($pattern,'',$current_url);
 
     }
 

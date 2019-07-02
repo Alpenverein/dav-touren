@@ -1,6 +1,13 @@
 <?php
 
 
+// Kein direkten Zugriff erlauben
+if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)))
+{
+    die('No direct calls allowed!');
+}
+
+
 /**
  * This function generate the Shortcode [preise][/preise]
  * With that you can generate a new line with prices.

@@ -1,5 +1,14 @@
 <?php
 
+
+// Kein direkten Zugriff erlauben
+if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)))
+{
+    die('No direct calls allowed!');
+}
+
+
+
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array(

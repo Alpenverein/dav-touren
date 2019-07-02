@@ -24,8 +24,40 @@ require_once 'includes/customizer.php';
 require_once 'includes/querybuilder.php';
 
 
+
+add_action('admin_footer', 'checktoradio');
+
+
+/**
+ * change the form in the classic editor from checkboxes to radioinput
+ *
+ */
 function checktoradio(){
     echo '<script type="text/javascript">jQuery("#tourcategorychecklist input, #tourtype-pop input, #tourtypechecklist input, #tourcondition-pop input, #tourconditionchecklist input, #tourtechnic-pop input, #tourtechnicchecklist input").each(function(){this.type="radio"});</script>';
 }
 
-add_action('admin_footer', 'checktoradio');
+
+
+
+function getCurrentURI() {
+
+    $return = '';
+
+    $return = $_SERVER['PATH_INFO'];
+
+    if($_SERVER['QUERY_STRING'] != '') {
+
+        $return .= '?'.$_SERVER['QUERY_STRING'].'&';
+
+    } else {$return .= '?';}
+
+
+    return $return;
+
+}
+
+
+
+
+
+

@@ -1,5 +1,13 @@
 <?php
 
+
+// Kein direkten Zugriff erlauben
+if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)))
+{
+    die('No direct calls allowed!');
+}
+
+
 //register a new section in the customizer
 function dav_touren_customize_register( $wp_customize) {
 
