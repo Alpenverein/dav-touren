@@ -17,10 +17,11 @@ $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     'dav-touren' //Plugin slug. Usually it's the same as the name of the directory.
 );
 
-require_once 'add_posttype.php';
-require_once 'add_taxonomy.php';
-require_once 'add_acf-fields.php';
-require_once 'customizer.php';
+require_once 'includes/add_posttype.php';
+require_once 'includes/add_taxonomy.php';
+require_once 'includes/add_acf-fields.php';
+require_once 'includes/customizer.php';
+require_once 'includes/querybuilder.php';
 
 
 function checktoradio(){
