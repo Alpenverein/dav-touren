@@ -7,22 +7,94 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)))
     die('No direct calls allowed!');
 }
 
-function tourQuery($parameter = '') {
+
+/**
+ * Return an array with all given parameters for the Tour-Query
+ *
+ * Return NULL, if there is no GET-Parameter given, or they are wrong.
+ *
+ * @param string $getString
+ * @return array|null
+ *
+ */
+function sortGetArray($getString = '') {
+
+    $return = null;
+
+
+    if ($getString != '') {
+
+
+        $typ = array();
+        $kategorie = array();
+        $technik = array();
+        $schwierigkeit = array();
+        $leiter = array();
+
+
+        $elements = explode('&',$getString);
+
+        foreach ($elements as $element) {
+
+            $element = explode('=', $element);
+
+            switch ($element[0]) {
+
+                case 'tourenkategorie': $kategorie[] = $element[1]; break;
+                case 'tourentyp' : $typ[] = $element[1]; break;
+                case 'tourentechnik' :$technik[] = $element[1]; break;
+                case 'tourenkondition' : $schwierigkeit[] = $element[1]; break;
+                case 'tourenleiter' : $leiter[] = $element[1]; break;
+            }
+
+            $return = array(
+                'typ' => $typ,
+                'kategorie' => $kategorie,
+                'technik' => $technik,
+                'kondition' => $schwierigkeit,
+                'leiter' => $leiter);
+
+        }
+
+    } else {
+
+        $return = null;
+
+    }
+
+
+    return $return;
+
+}
+
+
+
+function tourQuery($parameters = '') {
+
+
+    if($parameters == '') {
+        $queryParams = sortGetArray($_SERVER["QUERY_STRING"]);
+    } else {
+        $queryParams = $parameters;
+    }
 
     global $wp;
     if(get_theme_mod('dav_touren_counter') != false) {$pagecount = get_theme_mod('dav_touren_counter');}
     else {$pagecount = 10;};
 
-    $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-    $offset = ($paged - 1) * $pagecount;
+    //$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+
+    if (get_query_var('paged')):
+        $paged = get_query_var('paged');
+    elseif (get_query_var('page')):
+        $paged = get_query_var('page');
+    else:
+        $paged = 1;
+    endif;
+
+    $offset = ($paged - 2) * $pagecount;
 
 
-    if($paged > 1) {
-
-        $pattern = '/page\/\d/';
-        //$current_url = preg_replace($pattern,'',$current_url);
-
-    }
 
     if(get_theme_mod('dav_touren_pageid') != false) {$dav_pageid = get_theme_mod('dav_touren_pageid');}
     else {$dav_pageid = true;};
@@ -54,31 +126,31 @@ function tourQuery($parameter = '') {
 
         $tourenzukunft = array(
             'key' => 'acf_tourstartdate',
-            'compare' => '>=',
             'value' => date('Ymd', strtotime('-8 hours')),
+            'compare' => '>=',
             'type' => 'DATE',);
 
     }
 
 
 //Tourenart gesucht?
-    if (isset($_GET['tourentyp'])) {
+    if (isset($queryParams['typ']) && !empty($queryParams['typ'])) {
 
         $tourenart = array(
             'taxonomy' => 'tourtype',
             'field' => 'slug',
-            'terms' => $_GET['tourentyp']);
+            'terms' => $queryParams['typ']);
 
     } else {$tourenart = '';}
 
 
 //Tourenkategorie gesucht?
-    if(isset($_GET['tourenkategorie'])) {
+    if(isset($queryParams['kategorie']) && !empty($queryParams['kategorie'])) {
 
         $tourentyp = array(
             'taxonomy' => 'tourcategory',
             'field' => 'slug',
-            'terms' => $_GET['tourenkategorie']);
+            'terms' => $queryParams['kategorie']);
 
     } else {$tourentyp = '';}
 
@@ -86,42 +158,28 @@ function tourQuery($parameter = '') {
 
 
 //Tourentechnik gesucht?
-    if(isset($_GET['tourentechnik'])) {
+    if(isset($queryParams['technik']) && !empty($queryParams['technik'])) {
 
         $tourentechnik = array(
             'taxonomy' => 'tourtechnic',
             'field' => 'slug',
-            'terms' => $_GET['tourentechnik']);
+            'terms' => $queryParams['technik']);
 
     } else {$tourentechnik = '';}
 
 
 //Tourenkondition gesucht?
-    if(isset($_GET['tourenkondition'])) {
+    if(isset($queryParams['kondition']) && !empty($queryParams['kondition'])) {
 
         $tourenkondition = array(
             'taxonomy' => 'tourcondition',
             'field' => 'slug',
-            'terms' => $_GET['tourenkondition']);
+            'terms' => $queryParams['kondition']);
 
     } else {$tourenkondition = '';}
 
 
-//Tourenleiter gesucht?
-    if(isset($_GET['tourenleiter'])) {
-
-        $persona_id = get_page_by_path($_GET['tourenleiter'], '', 'personas');
-        $persona_id = $persona_id->ID;
-
-        $tourenpersona = array(
-            'key' => 'acf_tourpersona',
-            'compare' => '==',
-            'value' => $persona_id,
-            'type' => 'string',);
-
-    } else {$tourenpersona = '';}
-
-
+    // Nur Touren, die auch sichtbar sind
     $tourensichtbarkeit = array(
         'key' => 'acf_tourvisible',
         'compare' => '==',
@@ -129,14 +187,40 @@ function tourQuery($parameter = '') {
         'type' => 'string',
     );
 
+
+    //Tourenleiter gesucht?
+    if(isset($queryParams['leiter']) && !empty($queryParams['leiter'])) {
+
+        $tourenpersona = array(
+            'relation' => 'OR',);
+
+        foreach ($queryParams['leiter'] as $leiter) {
+
+            $persona = get_page_by_path($leiter, '', 'personas');;
+            $persona_id = $persona->ID;
+
+            array_push($tourenpersona, array(
+                'key' => 'acf_tourpersona',
+                'compare' => '==',
+                'value' => $persona_id,
+                'type' => 'string',
+            ));
+
+        }
+
+
+    } else {$tourenpersona = '';}
+
+
     $args = array(
         'post_type' => 'touren',
         'posts_per_page' => $pagecount,
         'paged' => $paged,
-        'offset' => $offset,
+        //'offset' => $offset,
         'meta_key' => 'acf_tourstartdate',
         'orderby' => 'meta_value',
         'order' => 'ASC',
+
 
         'tax_query' => array(
             'relation' => 'AND',
@@ -148,13 +232,13 @@ function tourQuery($parameter = '') {
 
         'meta_query' => array(
             'relation' => 'AND',
-            $tourenpersona,
             $tourenzukunft,
             $tourensichtbarkeit,
-        )
+            $tourenpersona,
+        ),
     );
 
 
     return $args;
 
-};
+}
