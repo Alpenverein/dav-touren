@@ -242,3 +242,46 @@ function tourQuery($parameters = '') {
     return $args;
 
 }
+
+
+
+function resetFilter() {
+
+    $return = '';
+
+    if($_SERVER["QUERY_STRING"] != '') {
+        $parameter = explode('&', $_SERVER["QUERY_STRING"]);
+    } else {
+        $parameter = '';
+    }
+
+
+    if ($parameter != '') {
+
+        for($i = 0; $i < count($parameter); $i++) {
+
+            $obj_id = get_queried_object_id();
+            $current_url = get_permalink( $obj_id );
+
+
+            $return .= '<a class="btn btn-default btn-sm" href="'.$current_url.'?';
+
+            for ($j = 0; $j < count($parameter); $j++) {
+
+                if($i != $j) {
+
+                    $return .= $parameter[$j].'&';
+
+                }
+
+            }
+
+            $return .= '"><i class="fa fa-times"></i> '.$parameter[$i].'</a>';
+
+        }
+
+    }
+
+    return $return;
+
+}

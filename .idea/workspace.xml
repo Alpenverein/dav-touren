@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f55ca76-d26c-4f1d-a9c5-63b84e6be173" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/querybuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/querybuilder.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +19,8 @@
       <file leaf-file-name="dav-touren.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dav-touren.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+            <state relative-caret-position="586">
+              <caret line="45" column="35" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="35" />
               <folding>
                 <element signature="e#6#442#0#PHP" expanded="true" />
               </folding>
@@ -32,8 +31,12 @@
       <file leaf-file-name="querybuilder.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/includes/querybuilder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
+            <state relative-caret-position="592">
+              <caret line="278" column="54" selection-start-line="278" selection-start-column="54" selection-end-line="278" selection-end-column="54" />
+              <folding>
+                <element signature="n#sortGetArray#0;n#!!top" />
+                <element signature="n#tourQuery#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,8 +73,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1515" />
-    <option name="y" value="48" />
+    <option name="x" value="1521" />
+    <option name="y" value="46" />
     <option name="width" value="1774" />
     <option name="height" value="993" />
   </component>
@@ -145,15 +148,15 @@
       <workItem from="1553596768616" duration="589000" />
       <workItem from="1562148138282" duration="532000" />
       <workItem from="1562312585450" duration="1951000" />
-      <workItem from="1562585756907" duration="10148000" />
+      <workItem from="1562585756907" duration="12688000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32588000" />
+    <option name="totallyTimeSpent" value="35128000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1515" y="48" width="1774" height="993" extended-state="0" />
+    <frame x="1521" y="46" width="1774" height="993" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -530,8 +533,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dav-touren.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+        <state relative-caret-position="586">
+          <caret line="45" column="35" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="35" />
           <folding>
             <element signature="e#6#442#0#PHP" expanded="true" />
           </folding>
@@ -540,8 +543,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/querybuilder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
+        <state relative-caret-position="592">
+          <caret line="278" column="54" selection-start-line="278" selection-start-column="54" selection-end-line="278" selection-end-column="54" />
+          <folding>
+            <element signature="n#sortGetArray#0;n#!!top" />
+            <element signature="n#tourQuery#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
