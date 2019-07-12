@@ -245,7 +245,7 @@ function tourQuery($parameters = '') {
 
 
 
-function resetFilter() {
+function resetFilter($currentURL) {
 
     $return = '';
 
@@ -258,13 +258,16 @@ function resetFilter() {
 
     if ($parameter != '') {
 
+
+        $return .= '<div class="row">';
+        $return .= '<div class="col-12">';
+
+
+        $return .= '<a class="btn btn-default btn-sm btn-tourenfilter-red" href="'.$currentURL.'"><i class="fa fa-times"></i> Alle Filter löschen</a>';
+
         for($i = 0; $i < count($parameter); $i++) {
 
-            $obj_id = get_queried_object_id();
-            $current_url = get_permalink( $obj_id );
-
-
-            $return .= '<a class="btn btn-default btn-sm" href="'.$current_url.'?';
+            $return .= '<a class="btn btn-default btn-sm btn-tourenfilter" href="'.$currentURL.'?';
 
             for ($j = 0; $j < count($parameter); $j++) {
 
@@ -276,11 +279,31 @@ function resetFilter() {
 
             }
 
-            $return .= '"><i class="fa fa-times"></i> '.$parameter[$i].'</a>';
+            $return .= '"><i class="fa fa-times"></i> '.formatFilterText($parameter[$i]).'</a>';
 
         }
 
+
+        $return .= '</div>';
+        $return .= '</div>';
+
     }
+
+    return $return;
+
+}
+
+
+
+function formatFilterText($string) {
+
+    $stringArray = explode('=',$string);
+
+
+    $return = str_replace('-',' ',$stringArray[1]);
+
+
+    $return = ucwords($return);
 
     return $return;
 
