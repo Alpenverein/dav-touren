@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f55ca76-d26c-4f1d-a9c5-63b84e6be173" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/querybuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/querybuilder.php" afterDir="false" />
     </list>
@@ -18,25 +17,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dav-touren.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dav-touren.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="45" column="35" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="35" />
-              <folding>
-                <element signature="e#6#442#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="querybuilder.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/includes/querybuilder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="261" column="8" selection-start-line="261" selection-start-column="8" selection-end-line="261" selection-end-column="8" />
+            <state relative-caret-position="75">
+              <caret line="248" lean-forward="true" selection-start-line="248" selection-end-line="248" />
               <folding>
-                <element signature="n#sortGetArray#0;n#!!top" />
                 <element signature="n#tourQuery#0;n#!!top" />
               </folding>
             </state>
@@ -79,8 +65,9 @@
       <path value="$PROJECT_DIR$/../../MAMP/alpenverein_development" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1735" />
+    <option name="y" value="102" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
@@ -156,15 +143,18 @@
       <workItem from="1562312585450" duration="1951000" />
       <workItem from="1562585756907" duration="12968000" />
       <workItem from="1562825976677" duration="1299000" />
-      <workItem from="1562863289853" duration="2271000" />
+      <workItem from="1562863289853" duration="4261000" />
+      <workItem from="1563276636767" duration="30000" />
+      <workItem from="1564150073640" duration="455000" />
+      <workItem from="1564520782769" duration="3891000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38978000" />
+    <option name="totallyTimeSpent" value="45344000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="1735" y="102" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -544,8 +534,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dav-touren.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="45" column="35" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="35" />
+        <state relative-caret-position="716">
+          <caret line="35" column="175" selection-start-line="35" selection-start-column="152" selection-end-line="35" selection-end-column="175" />
           <folding>
             <element signature="e#6#442#0#PHP" expanded="true" />
           </folding>
@@ -554,10 +544,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/querybuilder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="261" column="8" selection-start-line="261" selection-start-column="8" selection-end-line="261" selection-end-column="8" />
+        <state relative-caret-position="75">
+          <caret line="248" lean-forward="true" selection-start-line="248" selection-end-line="248" />
           <folding>
-            <element signature="n#sortGetArray#0;n#!!top" />
             <element signature="n#tourQuery#0;n#!!top" />
           </folding>
         </state>

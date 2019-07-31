@@ -250,7 +250,13 @@ function resetFilter($currentURL) {
     $return = '';
 
     if($_SERVER["QUERY_STRING"] != '') {
+
         $parameter = explode('&', $_SERVER["QUERY_STRING"]);
+
+        $parameter = array_unique($parameter);
+
+        rsort($parameter);
+
     } else {
         $parameter = '';
     }
@@ -263,15 +269,15 @@ function resetFilter($currentURL) {
         $return .= '<div class="col-12">';
 
 
-        $return .= '<a class="btn btn-default btn-sm btn-tourenfilter-red" href="'.$currentURL.'"><i class="fa fa-times"></i> Alle Filter löschen</a>';
+        $return .= '<strong>Aktive Filter: </strong>';
 
         for($i = 0; $i < count($parameter); $i++) {
 
-            $return .= '<a class="btn btn-default btn-sm btn-tourenfilter" href="'.$currentURL.'?';
+            $return .= '<a class="btn btn-primary btn-sm btn-tourenfilter" href="'.$currentURL.'?';
 
             for ($j = 0; $j < count($parameter); $j++) {
 
-                if($i != $j) {
+                if($j != $i) {
 
                     $return .= $parameter[$j].'&';
 
@@ -284,6 +290,7 @@ function resetFilter($currentURL) {
         }
 
 
+        $return .= '<a class="btn btn-default btn-sm btn-tourenfilter-delete" href="'.$currentURL.'"><i class="fa fa-times"></i> Alle Filter löschen</a>';
         $return .= '</div>';
         $return .= '</div>';
 
