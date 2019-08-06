@@ -45,15 +45,18 @@ function getCurrentURI() {
 
     $return = $_SERVER['PATH_INFO'];
 
+    $url = wp_parse_url( $_SERVER['REQUEST_URI']);
+
+    $url_delete = '/page\/\d\//';
+    $url_n = preg_replace($url_delete,'',$url['path']);
+
     if($_SERVER['QUERY_STRING'] != '') {
 
-        $return .= '?'.$_SERVER['QUERY_STRING'].'&';
+        $return .= get_site_url().$url_n.$_SERVER['QUERY_STRING'].'&';
 
-    } else {$return .= '?';}
-
+    } else {$return .= get_site_url().$url_n.'?';}
 
     return $return;
-
 }
 
 
