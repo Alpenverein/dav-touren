@@ -62,7 +62,6 @@ function sortGetArray($getString = '') {
 
     }
 
-
     return $return;
 
 }
