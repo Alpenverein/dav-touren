@@ -52,7 +52,7 @@ function getCurrentURI() {
 
     if($_SERVER['QUERY_STRING'] != '') {
 
-        $return .= get_site_url().$url_n.$_SERVER['QUERY_STRING'].'&';
+        $return .= get_site_url().$url_n.'?'.$_SERVER['QUERY_STRING'].'&';
 
     } else {$return .= get_site_url().$url_n.'?';}
 
