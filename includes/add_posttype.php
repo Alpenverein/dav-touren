@@ -58,8 +58,24 @@ function cpt_tours() {
         'has_archive'           => true,
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
-        'capability_type'       => 'page',
         'show_in_rest'          => true,
+        'capability_type' => 'Touren',
+        'capabilities' => array(
+            'edit_others_posts'     => 'edit_others_touren',
+            'delete_others_posts'   => 'delete_others_touren',
+            'delete_private_posts'  => 'delete_private_touren',
+            'edit_private_posts'    => 'edit_private_touren',
+            'read_private_posts'    => 'read_private_touren',
+            'edit_published_posts'  => 'edit_published_touren',
+            'publish_posts'         => 'publish_touren',
+            'delete_published_posts'=> 'delete_published_touren',
+            'edit_posts'            => 'edit_touren'   ,
+            'delete_posts'          => 'delete_touren',
+            'edit_post'             => 'edit_tour',
+            'read_post'             => 'read_tour',
+            'delete_post'           => 'delete_tour',
+        ),
+        'map_meta_cap' => true,
     );
     register_post_type( 'touren', $args );
 
