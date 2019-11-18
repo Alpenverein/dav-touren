@@ -20,6 +20,7 @@ $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 require_once 'includes/add_posttype.php';
 require_once 'includes/add_taxonomy.php';
 require_once 'includes/add_acf-fields.php';
+require_once 'includes/add_shortcodes.php';
 require_once 'includes/customizer.php';
 require_once 'includes/querybuilder.php';
 

@@ -400,7 +400,7 @@ acf_add_local_field_group(array(
 'fields' => array(
 array(
 'key' => 'field_5b7458310f753',
-'label' => 'Tourenleiter',
+'label' => 'Tourenleitung',
 'name' => 'acf_tourpersona',
 'type' => 'page_link',
 'instructions' => '',
@@ -417,6 +417,7 @@ array(
 'taxonomy' => array(
 0 => 'personarole:tourenleiter',
     1 => 'personarole:tourenleiterin',
+    2 => 'personarole:tourenleitung',
 ),
 'allow_null' => 1,
 'allow_archives' => 0,
