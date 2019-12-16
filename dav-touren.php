@@ -85,30 +85,13 @@ function touren_plugin_activation() {
         'read_tour'              => true,
         'delete_tour'            => true,
         'read'                  => true,
-        'Tourenkategorien verwalten' => true,
-        'Tourenkategorien bearbeiten' => true,
-        'Tourenkategorien löschen' => true,
-        'Tourenkategorien hinzufügen' => true,
-        'Tourenart verwalten' => true,
-        'Tourenart bearbeiten' => true,
-        'Tourenart löschen' => true,
-        'Tourenart hinzufügen' => true,
-        'Tourentechnik verwalten' => true,
-        'Tourentechnik bearbeiten' => true,
-        'Tourentechnik löschen' => true,
-        'Tourentechnik hinzufügen' => true,
-        'Konditionen verwalten' => true,
-        'Konditionen bearbeiten' => true,
-        'Konditionen löschen' => true,
-        'Konditionen hinzufügen' => true,
+
     );
 
     add_role( 'touren', __('Touren'), $tourenCaps );
 
-
-
     // Add custom capabilities to Admin and Editor Roles
-    $roles = array( 'administrator');
+    $roles = array( 'administrator', 'editor');
     foreach ( $roles as $roleName ) {
         // Get role
         $role = get_role( $roleName );
