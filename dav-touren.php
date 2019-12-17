@@ -42,12 +42,13 @@ function checktoradio(){
 
 function getCurrentURI() {
 
-    $return = '';
-
-    $return = $_SERVER['PATH_INFO'];
+    if(array_key_exists('PATH_INFO', $_SERVER)){
+        $return = $_SERVER['PATH_INFO'];
+    }else{
+        $return = '';
+    }
 
     $url = wp_parse_url( $_SERVER['REQUEST_URI']);
-
     $url_delete = '/page\/\d\//';
     $url_n = preg_replace($url_delete,'',$url['path']);
 

@@ -94,10 +94,11 @@ function tourQuery($parameters = '') {
     $offset = ($paged - 2) * $pagecount;
 
 
+    /*
+    @fixme: für was war das gedacht? $tourhead_content wird gesetzt aber nie wieder verwendet
 
     if(get_theme_mod('dav_touren_pageid') != false) {$dav_pageid = get_theme_mod('dav_touren_pageid');}
     else {$dav_pageid = true;};
-
 
     if($dav_pageid != false) {
 
@@ -108,6 +109,7 @@ function tourQuery($parameters = '') {
         $tourhead_content = str_replace(']]>', ']]>', $tourhead_content);
 
     }
+    */
 
     $taxonomy = '';
     $term = '';
