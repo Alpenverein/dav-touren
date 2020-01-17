@@ -74,8 +74,8 @@ function touren_plugin_activation() {
         'delete_private_tourens'       => true,
         'edit_private_tourens'         => true,
         'read_private_tourens'         => true,
-        'edit_published_tourens'       => true,
-        'publish_tourens'          => true,
+        'edit_published_tourens'      => true,
+        'publish_tourens'               => true,
         'delete_published_tourens'     => true,
         'edit_tourens'             => true,
         'delete_tourens'           => true,
@@ -83,11 +83,6 @@ function touren_plugin_activation() {
         'edit_touren' => true,
         'delete_touren' => true,
         'read'                  => true,
-        'manage_terms' => true,
-'edit_terms' => true,
-'delete_terms' => true,
-'assign_terms' => true,
-
     );
 
     add_role( 'toureditor', __('Tourenleitung'), $tourenCaps );
