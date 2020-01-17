@@ -49,6 +49,7 @@ function tourcategory_taxonomy() {
         'show_tagcloud'              => false,
         'rewrite'                    => $rewrite,
         'show_in_rest'               => true,
+        'capabilities'              => array ('assign_terms'  => 'edit_tourens'),
     );
     register_taxonomy( 'tourcategory', array( 'touren' ), $args );
 
@@ -97,6 +98,7 @@ function tourtype_taxonomy() {
         'show_tagcloud'              => false,
         'rewrite'                    => $rewrite,
         'show_in_rest'               => true,
+        'capabilities'              => array ('assign_terms'  => 'edit_tourens'),
     );
     register_taxonomy( 'tourtype', array( 'touren' ), $args );
 
@@ -138,6 +140,7 @@ function tourtechnic_taxonomy() {
         'show_tagcloud'              => false,
         'rewrite'                    => false,
         'show_in_rest'               => true,
+        'capabilities'              => array ('assign_terms'  => 'edit_tourens'),
 
     );
     register_taxonomy( 'tourtechnic', array( 'touren' ), $args );
@@ -179,6 +182,7 @@ function tourcondition_taxonomy() {
         'show_tagcloud'              => false,
         'rewrite'                    => false,
         'show_in_rest'               => true,
+        'capabilities'              => array ('assign_terms'  => 'edit_tourens'),
     );
     register_taxonomy( 'tourcondition', array( 'touren' ), $args );
 
