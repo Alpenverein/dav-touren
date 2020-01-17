@@ -83,10 +83,14 @@ function touren_plugin_activation() {
         'edit_touren' => true,
         'delete_touren' => true,
         'read'                  => true,
+        'manage_terms' => true,
+'edit_terms' => true,
+'delete_terms' => true,
+'assign_terms' => true,
 
     );
 
-    add_role( 'touren', __('Touren'), $tourenCaps );
+    add_role( 'toureditor', __('Tourenleitung'), $tourenCaps );
 
     // Add custom capabilities to Admin and Editor Roles
     $roles = array( 'administrator');
