@@ -49,12 +49,6 @@ function tourcategory_taxonomy() {
         'show_tagcloud'              => false,
         'rewrite'                    => $rewrite,
         'show_in_rest'               => true,
-        'capabilities' => array(
-            'manage_terms'  => 'Tourenkategorien verwalten',
-            'edit_terms'    => 'Tourenkategorien bearbeiten',
-            'delete_terms'  => 'Tourenkategorien löschen',
-            'assign_terms'  => 'Tourenkategorien hinzufügen',
-        ),
     );
     register_taxonomy( 'tourcategory', array( 'touren' ), $args );
 
@@ -103,12 +97,6 @@ function tourtype_taxonomy() {
         'show_tagcloud'              => false,
         'rewrite'                    => $rewrite,
         'show_in_rest'               => true,
-        'capabilities' => array(
-            'manage_terms'  => 'Tourenart verwalten',
-            'edit_terms'    => 'Tourenart bearbeiten',
-            'delete_terms'  => 'Tourenart löschen',
-            'assign_terms'  => 'Tourenart hinzufügen',
-        ),
     );
     register_taxonomy( 'tourtype', array( 'touren' ), $args );
 
@@ -150,12 +138,6 @@ function tourtechnic_taxonomy() {
         'show_tagcloud'              => false,
         'rewrite'                    => false,
         'show_in_rest'               => true,
-        'capabilities' => array(
-            'manage_terms'  => 'Tourentechnik verwalten',
-            'edit_terms'    => 'Tourentechnik bearbeiten',
-            'delete_terms'  => 'Tourentechnik löschen',
-            'assign_terms'  => 'Tourentechnik hinzufügen',
-        ),
 
     );
     register_taxonomy( 'tourtechnic', array( 'touren' ), $args );
@@ -197,12 +179,6 @@ function tourcondition_taxonomy() {
         'show_tagcloud'              => false,
         'rewrite'                    => false,
         'show_in_rest'               => true,
-        'capabilities' => array(
-            'manage_terms'  => 'Konditionen verwalten',
-            'edit_terms'    => 'Konditionen bearbeiten',
-            'delete_terms'  => 'Konditionen löschen',
-            'assign_terms'  => 'Konditionen hinzufügen',
-        ),
     );
     register_taxonomy( 'tourcondition', array( 'touren' ), $args );
 
