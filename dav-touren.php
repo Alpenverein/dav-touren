@@ -69,22 +69,19 @@ function touren_plugin_activation() {
 
     // Define our custom capabilities
     $tourenCaps = array(
-        'edit_tourdata'             => true,
-        'delete_tourdata'             => true,
-        'assign_tourdata'             => true,
-        'edit_others_touren'        => true,
-        'delete_others_touren'      => true,
-        'delete_private_touren'     => true,
-        'edit_private_touren'       => true,
-        'read_private_touren'         => true,
-        'edit_published_touren'       => true,
-        'publish_touren'          => true,
-        'delete_published_touren'     => true,
-        'edit_touren'             => true,
-        'delete_touren'           => true,
-        'edit_tour'              => true,
-        'read_tour'              => true,
-        'delete_tour'            => true,
+        'edit_others_tourens'          => true,
+        'delete_others_tourens'        => true,
+        'delete_private_tourens'       => true,
+        'edit_private_tourens'         => true,
+        'read_private_tourens'         => true,
+        'edit_published_tourens'       => true,
+        'publish_tourens'          => true,
+        'delete_published_tourens'     => true,
+        'edit_tourens'             => true,
+        'delete_tourens'           => true,
+        'read_touren'	=> true,
+        'edit_touren' => true,
+        'delete_touren' => true,
         'read'                  => true,
 
     );
@@ -92,7 +89,7 @@ function touren_plugin_activation() {
     add_role( 'touren', __('Touren'), $tourenCaps );
 
     // Add custom capabilities to Admin and Editor Roles
-    $roles = array( 'administrator', 'editor');
+    $roles = array( 'administrator');
     foreach ( $roles as $roleName ) {
         // Get role
         $role = get_role( $roleName );
