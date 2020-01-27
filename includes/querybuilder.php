@@ -249,70 +249,28 @@ function tourQuery($parameters = '') {
 function resetFilter($currentURL) {
 
     $return = '';
+    $return .= '<div class="row">';
+    $return .= '<div class="col-12">';
+    $return .= '<strong>Aktive Filter: </strong>';
 
-    if($_SERVER["QUERY_STRING"] != '') {
-
-        $parameter = explode('&', $_SERVER["QUERY_STRING"]);
-
-        $parameter = array_unique($parameter);
-
-        rsort($parameter);
-
-    } else {
-        $parameter = '';
-    }
-
-
-    if ($parameter != '') {
-
-
-        $return .= '<div class="row">';
-        $return .= '<div class="col-12">';
-
-
-        $return .= '<strong>Aktive Filter: </strong>';
-
-        for($i = 0; $i < count($parameter); $i++) {
-
-            $return .= '<a class="btn btn-primary btn-sm btn-tourenfilter" href="'.$currentURL.'?';
-
-            for ($j = 0; $j < count($parameter); $j++) {
-
-                if($j != $i) {
-
-                    $return .= $parameter[$j].'&';
-
-                }
-
-            }
-
-            $return .= '"><i class="fa fa-times"></i> '.formatFilterText($parameter[$i]).'</a>';
-
-        }
-
-
-        $return .= '<a class="btn btn-default btn-sm btn-tourenfilter-delete" href="'.$currentURL.'"><i class="fa fa-times"></i> Alle Filter löschen</a>';
-        $return .= '</div>';
-        $return .= '</div>';
+    parse_str($_SERVER['QUERY_STRING'], $query_params);
+    foreach($query_params as $key => $val){
+        $return .= '<a class="btn btn-primary btn-sm btn-tourenfilter" href="' . remove_query_arg( $key ) . '"><i class="fa fa-times"></i> ' . ucwords($val).'</a>';
 
     }
+
+    $return .= '<a class="btn btn-default btn-sm btn-tourenfilter-delete" href="' . remove_query_arg( array_keys($query_params) ) . '"><i class="fa fa-times"></i> Alle Filter löschen</a>';
+    $return .= '</div>';
+    $return .= '</div>';
 
     return $return;
-
 }
 
 
 
 function formatFilterText($string) {
-
     $stringArray = explode('=',$string);
-
-
     $return = str_replace('-',' ',$stringArray[1]);
-
-
     $return = ucwords($return);
-
     return $return;
-
 }
