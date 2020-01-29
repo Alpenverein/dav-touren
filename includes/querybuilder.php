@@ -57,6 +57,7 @@ function sortGetArray() {
 
 function tourQuery($parameters = '') {
 
+    global $wp;
 
     if($parameters == '') {
         $queryParams = sortGetArray($_SERVER["QUERY_STRING"]);
@@ -64,22 +65,10 @@ function tourQuery($parameters = '') {
         $queryParams = $parameters;
     }
 
-    global $wp;
-    if(get_theme_mod('dav_touren_counter') != false) {$pagecount = get_theme_mod('dav_touren_counter');}
-    else {$pagecount = 10;};
-
-    //$paged = get_query_var('paged') ? get_query_var('paged') : 1;
-
-    if (get_query_var('paged')):
-        $paged = get_query_var('paged');
-    elseif (get_query_var('page')):
-        $paged = get_query_var('page');
-    else:
-        $paged = 1;
-    endif;
-
-    // Das kommentiere ich mal besser auch aus :-)
-    //$offset = ($paged - 2) * $pagecount;
+    
+    $pagecount = get_theme_mod('dav_touren_counter', 10);
+    $paged =  get_query_var('paged', get_query_var('page', 1));
+    $offset = ($paged - 1) * $pagecount;
 
 
     /*
@@ -113,49 +102,45 @@ function tourQuery($parameters = '') {
                 'value' => '1',
                 'type' => 'string')
         );
-            
 
 
 //Tourenart gesucht?
     if (isset($queryParams['tourentyp']) && !empty($queryParams['tourentyp'])) {
-
         array_push($tax_query, array(
             'taxonomy' => 'tourtype',
             'field' => 'slug',
-            'terms' => $queryParams['tourentyp']));
+            'terms' => $queryParams['tourentyp'])
+        );
     }
 
 
 //Tourenkategorie gesucht?
     if(isset($queryParams['tourenkategorie']) && !empty($queryParams['tourenkategorie'])) {
-
         array_push($tax_query, array(
             'taxonomy' => 'tourcategory',
             'field' => 'slug',
-            'terms' => $queryParams['tourenkategorie']));
-
+            'terms' => $queryParams['tourenkategorie'])
+        );
     } 
 
 
 //Tourentechnik gesucht?
     if(isset($queryParams['tourentechnik']) && !empty($queryParams['tourentechnik'])) {
-
         array_push($tax_query, array(
             'taxonomy' => 'tourtechnic',
             'field' => 'slug',
-            'terms' => $queryParams['tourentechnik']));
-
+            'terms' => $queryParams['tourentechnik'])
+        );
     }
 
 
 //Tourenkondition gesucht?
     if(isset($queryParams['tourenkondition']) && !empty($queryParams['tourenkondition'])) {
-
         array_push($tax_query, array(
             'taxonomy' => 'tourcondition',
             'field' => 'slug',
-            'terms' => $queryParams['tourenkondition']));
-
+            'terms' => $queryParams['tourenkondition'])
+        );
     }
 
 
@@ -168,7 +153,7 @@ function tourQuery($parameters = '') {
                 'key' => 'acf_tourpersona',
                 'compare' => '==',
                 'value' => $persona->ID,
-                'type' => 'string',
+                'type' => 'string'
             ));
         }
     } 
@@ -189,7 +174,7 @@ function tourQuery($parameters = '') {
         'post_type' => 'touren',
         'posts_per_page' => $pagecount,
         'paged' => $paged,
-        //'offset' => $offset,
+        'offset' => $offset,
         'meta_key' => 'acf_tourstartdate',
         'orderby' => 'meta_value',
         'order' => 'ASC',
