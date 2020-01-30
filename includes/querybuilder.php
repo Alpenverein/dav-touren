@@ -54,10 +54,13 @@ function sortGetArray() {
 }
 
 
+function is_term_in_query($term, $value){
+    $selected_terms = sortGetArray();
+    return array_key_exists($term, $selected_terms) && in_array($value, $selected_terms[$term]);
+}
+
 
 function tourQuery($parameters = '') {
-
-    global $wp;
 
     if($parameters == '') {
         $queryParams = sortGetArray($_SERVER["QUERY_STRING"]);
@@ -65,11 +68,9 @@ function tourQuery($parameters = '') {
         $queryParams = $parameters;
     }
 
-    
-    $pagecount = get_theme_mod('dav_touren_counter', 10);
-    $paged =  get_query_var('paged', get_query_var('page', 1));
-    $offset = ($paged - 1) * $pagecount;
-
+    $posts_per_page = 2; //get_theme_mod('dav_touren_counter', 10);
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $offset = ($paged - 1) * $posts_per_page;
 
     /*
     @fixme: für was war das gedacht? $tourhead_content wird gesetzt aber nie wieder verwendet
@@ -172,7 +173,7 @@ function tourQuery($parameters = '') {
 
     $args = array(
         'post_type' => 'touren',
-        'posts_per_page' => $pagecount,
+        'posts_per_page' => $posts_per_page,
         'paged' => $paged,
         'offset' => $offset,
         'meta_key' => 'acf_tourstartdate',
@@ -191,7 +192,7 @@ function remove_value_from_querystring($arg, $value){
     $new_values = array_diff($values, array($value));
     if(count($new_values) >= 1){
         return add_query_arg($arg, implode(",", $new_values));    
-    }else{
+    } else {
         return remove_query_arg($arg);
     }
 }
@@ -200,10 +201,10 @@ function remove_value_from_querystring($arg, $value){
 function add_value_to_querystring($arg, $value) {
     if(array_key_exists($arg, $_GET)){
         $values = explode(",", $_GET[$arg]);
-        array_push($values, $value);
-        return add_query_arg($arg, implode(",", $values));
-    }else{
-        return add_query_arg($arg, $value);
+        array_push($values, trim($value));
+        return add_query_arg($arg, urlencode(implode(",", $values)));
+    } else {
+        return add_query_arg($arg, urlencode($value));
     }
 }
 
