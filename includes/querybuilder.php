@@ -209,7 +209,7 @@ function add_value_to_querystring($arg, $value) {
 }
 
 
-function getResetFilter($currentURL) {
+function getResetFilter() {
 
     $return = '';
     $return .= '<div class="row">';
@@ -221,7 +221,8 @@ function getResetFilter($currentURL) {
         $values = explode(",", $val);
         foreach($values as $value){
             $return .= '<a class="btn btn-primary btn-sm btn-tourenfilter" href="' . 
-                remove_value_from_querystring( $arg, $value ) . '"><i class="fa fa-times"></i> ' . ucwords($value).'</a>';            
+                preg_replace('/\/page\/[0-9]*/', "", remove_value_from_querystring( $arg, $value ))
+                . '"><i class="fa fa-times"></i> ' . ucwords($value).'</a>';    
         }
     }
 
