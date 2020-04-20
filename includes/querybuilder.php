@@ -68,7 +68,7 @@ function tourQuery($parameters = '') {
         $queryParams = $parameters;
     }
 
-    $posts_per_page = 2; //get_theme_mod('dav_touren_counter', 10);
+    $posts_per_page = get_theme_mod('dav_touren_counter', 10);
     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     $offset = ($paged - 1) * $posts_per_page;
 
