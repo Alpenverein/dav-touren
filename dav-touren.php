@@ -27,6 +27,25 @@ require_once 'includes/querybuilder.php';
 
 
 add_action('admin_footer', 'checktoradio');
+add_action('pre_get_posts', 'do_overwrite_tour_query');
+add_filter('redirect_canonical','pif_disable_redirect_canonical');
+
+
+function do_overwrite_tour_query($query){
+    if( $query->is_main_query() && !is_admin() && is_post_type_archive( 'touren' ) ) {
+        $tour_query = tourQuery();
+        foreach($tour_query as $key => $val){
+            $query->set($key, $val);    
+        }
+    }
+}
+
+
+function pif_disable_redirect_canonical($redirect_url) {
+    $redirect_url = false;
+    return $redirect_url;
+}
+
 
 
 /**
@@ -69,20 +88,20 @@ function touren_plugin_activation() {
 
     // Define our custom capabilities
     $tourenCaps = array(
-        'edit_others_tourens'          => true,
-        'delete_others_tourens'        => true,
-        'delete_private_tourens'       => true,
-        'edit_private_tourens'         => true,
-        'read_private_tourens'         => true,
-        'edit_published_tourens'      => true,
-        'publish_tourens'               => true,
-        'delete_published_tourens'     => true,
-        'edit_tourens'             => true,
-        'delete_tourens'           => true,
-        'read_touren'	=> true,
+        'edit_others_tourens' => true,
+        'delete_others_tourens' => true,
+        'delete_private_tourens' => true,
+        'edit_private_tourens' => true,
+        'read_private_tourens' => true,
+        'edit_published_tourens' => true,
+        'publish_tourens' => true,
+        'delete_published_tourens' => true,
+        'edit_tourens' => true,
+        'delete_tourens' => true,
+        'read_touren' => true,
         'edit_touren' => true,
         'delete_touren' => true,
-        'read'                  => true,
+        'read' => true,
     );
 
     add_role( 'toureditor', __('Tourenleitung'), $tourenCaps );

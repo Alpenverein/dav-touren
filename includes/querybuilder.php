@@ -17,59 +17,50 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)))
  * @return array|null
  *
  */
-function sortGetArray($getString = '') {
-
-    $return = null;
+function sortGetArray() {
 
 
-    if ($getString != '') {
+        $return = array(
+            'tourentyp' => array(),
+            'tourenkategorie' => array(),
+            'tourentechnik' => array(),
+            'tourenkondition' => array(),
+            'tourenleiter' => array()
+        );
 
+        parse_str($_SERVER['QUERY_STRING'], $queryParams);
 
-        $typ = array();
-        $kategorie = array();
-        $technik = array();
-        $schwierigkeit = array();
-        $leiter = array();
-
-
-        $elements = explode('&',$getString);
-
-        foreach ($elements as $element) {
-
-            $element = explode('=', $element);
-
-            switch ($element[0]) {
-
-                case 'tourenkategorie': $kategorie[] = $element[1]; break;
-                case 'tourentyp' : $typ[] = $element[1]; break;
-                case 'tourentechnik' :$technik[] = $element[1]; break;
-                case 'tourenkondition' : $schwierigkeit[] = $element[1]; break;
-                case 'tourenleiter' : $leiter[] = $element[1]; break;
+        foreach ($queryParams as $key => $value) {
+            switch ($key) {
+                case 'tourentyp':
+                    $return["tourentyp"] = explode(",", $value); 
+                    break;
+                case 'tourenkategorie':
+                    $return["tourenkategorie"] = explode(",", $value); 
+                    break;
+                case 'tourentechnik':
+                    $return["tourentechnik"] =  explode(",", $value);
+                    break;
+                case 'tourenkondition':
+                    $return["tourenkondition"] = explode(",", $value);
+                    break;
+                case 'tourenleiter':
+                    $return["tourenleiter"] = explode(",", $value); 
+                    break;
             }
-
-            $return = array(
-                'typ' => $typ,
-                'kategorie' => $kategorie,
-                'technik' => $technik,
-                'kondition' => $schwierigkeit,
-                'leiter' => $leiter);
-
         }
 
-    } else {
-
-        $return = null;
-
-    }
-
     return $return;
-
 }
 
 
+function is_term_in_query($term, $value){
+    $selected_terms = sortGetArray();
+    return array_key_exists($term, $selected_terms) && in_array($value, $selected_terms[$term]);
+}
+
 
 function tourQuery($parameters = '') {
-
 
     if($parameters == '') {
         $queryParams = sortGetArray($_SERVER["QUERY_STRING"]);
@@ -77,22 +68,9 @@ function tourQuery($parameters = '') {
         $queryParams = $parameters;
     }
 
-    global $wp;
-    if(get_theme_mod('dav_touren_counter') != false) {$pagecount = get_theme_mod('dav_touren_counter');}
-    else {$pagecount = 10;};
-
-    //$paged = get_query_var('paged') ? get_query_var('paged') : 1;
-
-    if (get_query_var('paged')):
-        $paged = get_query_var('paged');
-    elseif (get_query_var('page')):
-        $paged = get_query_var('page');
-    else:
-        $paged = 1;
-    endif;
-
-    $offset = ($paged - 2) * $pagecount;
-
+    $posts_per_page = get_theme_mod('dav_touren_counter', 10);
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $offset = ($paged - 1) * $posts_per_page;
 
     /*
     @fixme: für was war das gedacht? $tourhead_content wird gesetzt aber nie wieder verwendet
@@ -111,142 +89,127 @@ function tourQuery($parameters = '') {
     }
     */
 
-    $taxonomy = '';
-    $term = '';
 
-    $args = array();
+    $tax_query = array(
+        'relation' => 'AND'
+    );
 
-    //Alle Touren oder nur zukünftige?
-    if(get_theme_mod('dav_touren_datenewer')) {
-
-        $tour_dates = get_theme_mod('dav_touren_datenewer');
-
-    } else { $tour_dates = false; $tourenzukunft = ''; }
-
-    if($tour_dates == true) {
-
-        $tourenzukunft = array(
-            'key' => 'acf_tourstartdate',
-            'value' => date('Ymd', strtotime('-8 hours')),
-            'compare' => '>=',
-            'type' => 'DATE',);
-
-    }
+    $meta_query = array(
+            'relation' => 'AND',
+            // Nur Touren, die auch sichtbar sind
+            array(
+                'key' => 'acf_tourvisible',
+                'compare' => '==',
+                'value' => '1',
+                'type' => 'string')
+        );
 
 
 //Tourenart gesucht?
-    if (isset($queryParams['typ']) && !empty($queryParams['typ'])) {
-
-        $tourenart = array(
+    if (isset($queryParams['tourentyp']) && !empty($queryParams['tourentyp'])) {
+        array_push($tax_query, array(
             'taxonomy' => 'tourtype',
             'field' => 'slug',
-            'terms' => $queryParams['typ']);
-
-    } else {$tourenart = '';}
+            'terms' => $queryParams['tourentyp'])
+        );
+    }
 
 
 //Tourenkategorie gesucht?
-    if(isset($queryParams['kategorie']) && !empty($queryParams['kategorie'])) {
-
-        $tourentyp = array(
+    if(isset($queryParams['tourenkategorie']) && !empty($queryParams['tourenkategorie'])) {
+        array_push($tax_query, array(
             'taxonomy' => 'tourcategory',
             'field' => 'slug',
-            'terms' => $queryParams['kategorie']);
-
-    } else {$tourentyp = '';}
-
-
+            'terms' => $queryParams['tourenkategorie'])
+        );
+    } 
 
 
 //Tourentechnik gesucht?
-    if(isset($queryParams['technik']) && !empty($queryParams['technik'])) {
-
-        $tourentechnik = array(
+    if(isset($queryParams['tourentechnik']) && !empty($queryParams['tourentechnik'])) {
+        array_push($tax_query, array(
             'taxonomy' => 'tourtechnic',
             'field' => 'slug',
-            'terms' => $queryParams['technik']);
-
-    } else {$tourentechnik = '';}
+            'terms' => $queryParams['tourentechnik'])
+        );
+    }
 
 
 //Tourenkondition gesucht?
-    if(isset($queryParams['kondition']) && !empty($queryParams['kondition'])) {
-
-        $tourenkondition = array(
+    if(isset($queryParams['tourenkondition']) && !empty($queryParams['tourenkondition'])) {
+        array_push($tax_query, array(
             'taxonomy' => 'tourcondition',
             'field' => 'slug',
-            'terms' => $queryParams['kondition']);
-
-    } else {$tourenkondition = '';}
-
-
-    // Nur Touren, die auch sichtbar sind
-    $tourensichtbarkeit = array(
-        'key' => 'acf_tourvisible',
-        'compare' => '==',
-        'value' => '1',
-        'type' => 'string',
-    );
+            'terms' => $queryParams['tourenkondition'])
+        );
+    }
 
 
-    //Tourenleiter gesucht?
-    if(isset($queryParams['leiter']) && !empty($queryParams['leiter'])) {
-
-        $tourenpersona = array(
-            'relation' => 'OR',);
-
-        foreach ($queryParams['leiter'] as $leiter) {
-
-            $persona = get_page_by_path($leiter, '', 'personas');;
-            $persona_id = $persona->ID;
-
-            array_push($tourenpersona, array(
+//Tourenleiter gesucht?
+    if(isset($queryParams['tourenleiter']) && !empty($queryParams['tourenleiter'])) {
+        $tourenpersona = array( 'relation' => 'OR');
+        foreach ($queryParams['tourenleiter'] as $leiter) {
+            $persona = get_page_by_path($leiter, '', 'personas');
+            array_push($meta_query, array(
                 'key' => 'acf_tourpersona',
                 'compare' => '==',
-                'value' => $persona_id,
-                'type' => 'string',
+                'value' => $persona->ID,
+                'type' => 'string'
             ));
-
         }
+    } 
 
-
-    } else {$tourenpersona = '';}
+//Alle Touren oder nur zukünftige?
+    if(get_theme_mod('dav_touren_datenewer')) {
+        $tour_dates = get_theme_mod('dav_touren_datenewer');
+        array_push($meta_query, array(
+            'key' => 'acf_tourstartdate',
+            'value' => date('Ymd', strtotime('-8 hours')),
+            'compare' => '>=',
+            'type' => 'DATE'
+        ));
+    } 
 
 
     $args = array(
         'post_type' => 'touren',
-        'posts_per_page' => $pagecount,
+        'posts_per_page' => $posts_per_page,
         'paged' => $paged,
-        //'offset' => $offset,
+        'offset' => $offset,
         'meta_key' => 'acf_tourstartdate',
         'orderby' => 'meta_value',
         'order' => 'ASC',
-
-
-        'tax_query' => array(
-            'relation' => 'AND',
-            $tourentyp,
-            $tourenart,
-            $tourenkondition,
-            $tourentechnik,
-        ),
-
-        'meta_query' => array(
-            'relation' => 'AND',
-            $tourenzukunft,
-            $tourensichtbarkeit,
-            $tourenpersona,
-        ),
+        'tax_query' => $tax_query,
+        'meta_query' => $meta_query
     );
 
-
     return $args;
-
 }
 
 
+function remove_value_from_querystring($arg, $value){
+    $values = explode(",", $_GET[$arg]);
+    $new_values = array_diff($values, array($value));
+    if(count($new_values) >= 1){
+        return add_query_arg($arg, implode(",", $new_values));    
+    } else {
+        return remove_query_arg($arg);
+    }
+}
 
-function resetFilter($currentURL) {
+
+function add_value_to_querystring($arg, $value) {
+    if(array_key_exists($arg, $_GET)){
+        $values = explode(",", $_GET[$arg]);
+        array_push($values, trim($value));
+        return add_query_arg($arg, urlencode(implode(",", $values)));
+    } else {
+        return add_query_arg($arg, urlencode($value));
+    }
+}
+
+
+function getResetFilter() {
 
     $return = '';
     $return .= '<div class="row">';
@@ -254,12 +217,15 @@ function resetFilter($currentURL) {
     $return .= '<strong>Aktive Filter: </strong>';
 
     parse_str($_SERVER['QUERY_STRING'], $query_params);
-    foreach($query_params as $key => $val){
-        $return .= '<a class="btn btn-primary btn-sm btn-tourenfilter" href="' . remove_query_arg( $key ) . '"><i class="fa fa-times"></i> ' . ucwords($val).'</a>';
-
+    foreach($query_params as $arg => $val){
+        $values = explode(",", $val);
+        foreach($values as $value){
+            $return .= '<a class="btn btn-primary btn-sm btn-tourenfilter" href="' . 
+                preg_replace('/\/page\/[0-9]*/', "", remove_value_from_querystring( $arg, $value ))
+                . '"><i class="fa fa-times"></i> ' . ucwords($value).'</a>';    
+        }
     }
 
-    $return .= '<a class="btn btn-default btn-sm btn-tourenfilter-delete" href="' . remove_query_arg( array_keys($query_params) ) . '"><i class="fa fa-times"></i> Alle Filter löschen</a>';
     $return .= '</div>';
     $return .= '</div>';
 
@@ -267,10 +233,3 @@ function resetFilter($currentURL) {
 }
 
 
-
-function formatFilterText($string) {
-    $stringArray = explode('=',$string);
-    $return = str_replace('-',' ',$stringArray[1]);
-    $return = ucwords($return);
-    return $return;
-}
