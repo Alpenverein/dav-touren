@@ -3,7 +3,7 @@
 Plugin Name:  DAV Touren
 Plugin URI:   https://template.alpenverein.de/index.php/faq/touren/
 Description:  Dieses Plugin erzeugt den CustomPostType "Touren". Damit lassen sich Touren in Wordpress verwalten und über ein entsprechendes Template ausgeben.
-Version:      1.1.2
+Version:      1.2.0
 Author:       Deutscher Alpenverein
 Author URI:   https://template.alpenverein.de/
 License:      GPL2
