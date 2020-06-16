@@ -147,16 +147,17 @@ function tourQuery($parameters = '') {
 
 //Tourenleiter gesucht?
     if(isset($queryParams['tourenleiter']) && !empty($queryParams['tourenleiter'])) {
-        $tourenpersona = array( 'relation' => 'OR');
+        $_meta_query = array( 'relation' => 'OR');
         foreach ($queryParams['tourenleiter'] as $leiter) {
             $persona = get_page_by_path($leiter, '', 'personas');
-            array_push($meta_query, array(
+            array_push($_meta_query, array(
                 'key' => 'acf_tourpersona',
                 'compare' => '==',
                 'value' => $persona->ID,
                 'type' => 'string'
             ));
         }
+        array_push($meta_query, $_meta_query);
     } 
 
 //Alle Touren oder nur zukünftige?
