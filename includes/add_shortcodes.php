@@ -26,7 +26,7 @@ function csc_tourlist( $atts )
 
     $return .= '<div class="accordion tour-list" id="tourlist">';
 
-    $the_query = new WP_Query(tourQuery(array('kategorie' => array($atts['kategorie']), 'leiter' => array($atts['leiter']))));
+    $the_query = new WP_Query(tourQuery(array('kategorie' => array($atts['kategorie']), 'tourenleiter' => array($atts['leiter']))));
 
     $pagesum = $the_query->max_num_pages;
 
