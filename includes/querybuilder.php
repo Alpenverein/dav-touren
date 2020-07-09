@@ -161,8 +161,7 @@ function tourQuery($parameters = '') {
     } 
 
 //Alle Touren oder nur zukünftige?
-    if(get_theme_mod('dav_touren_datenewer')) {
-        $tour_dates = get_theme_mod('dav_touren_datenewer');
+    if(get_theme_mod('dav_touren_datenewer') == 'true') {
         array_push($meta_query, array(
             'key' => 'acf_tourstartdate',
             'value' => date('Ymd', strtotime('-8 hours')),
@@ -170,7 +169,6 @@ function tourQuery($parameters = '') {
             'type' => 'DATE'
         ));
     } 
-
 
     $args = array(
         'post_type' => 'touren',
