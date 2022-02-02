@@ -242,7 +242,7 @@ if ( ! class_exists( 'Taxonomy_Term_Image' ) ) :
         private function __clone(){}
 
         // prevent unserialization
-        private function __wakeup(){}
+        public function __wakeup(){}
 
         /**
          * Init the plugin and hook into WordPress
